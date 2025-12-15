@@ -1,72 +1,117 @@
-# Author: Constantin Zackl
-# Date: Sys.Date()
+library(spacedeconv)
+library(SpatialExperiment)
+library(ggplot2)
+library(gridExtra)
+library(RColorBrewer)
 
-# ---- Libraries ----
-suppressPackageStartupMessages({
-  library(spacedeconv)
-  library(SpatialExperiment)
-  library(ggplot2)
-  library(gridExtra)
-  library(RColorBrewer)
-})
+decouple <- readRDS("./export/3BdecoupleR.rds")
+tcr      <- readRDS("./export/3Btcr.rds")
 
-# ---- Load data ----
-decouple <- readRDS("./export2/paper/3BdecoupleR.rds")
-tcr      <- readRDS("./export2/paper/3Btcr.rds")
+title_size <- 22
+font_size <- 18
+legend_size <- 20
 
-title_size <- 25
+tgfb  <- plot_spatial(
+    decouple,
+    result = "progeny_TGFb",
+    title = "TGFb",
+    density = FALSE,
+    smooth = TRUE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03
+)
 
-# ---- decoupleR maps ----
-tgfb  <- plot_celltype(decouple, cell_type = "progeny_TGFb",
-                       title = "TGFb", density = FALSE, smooth = TRUE,
-                       title_size = title_size, spot_size = 1.03)
+wnt <- plot_spatial(
+    decouple,
+    result = "progeny_WNT",
+    title = "WNT",
+    density = FALSE,
+    smooth = TRUE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03
+)
 
-wnt   <- plot_celltype(decouple, cell_type = "progeny_WNT",
-                       title = "WNT", density = FALSE, smooth = TRUE,
-                       title_size = title_size, spot_size = 1.03)
+hypox <- plot_spatial(
+    decouple,
+    result = "progeny_Hypoxia",
+    title = "Hypoxia",
+    density = FALSE,
+    smooth = TRUE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03
+)
 
-hypox <- plot_celltype(decouple, cell_type = "progeny_Hypoxia",
-                       title = "Hypoxia", density = FALSE, smooth = TRUE,
-                       title_size = title_size, spot_size = 1.03)
+myc <- plot_spatial(
+    decouple,
+    result = "collectri_MYC",
+    title = "MYC",
+    density = FALSE,
+    smooth = TRUE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03
+)
 
-myc   <- plot_celltype(decouple, cell_type = "collectri_MYC",
-                       title = "MYC", density = FALSE, smooth = TRUE,
-                       title_size = title_size, spot_size = 1.03)
+jak <- plot_spatial(
+    decouple,
+    result = "progeny_JAK.STAT",
+    title = "JAK-STAT",
+    density = FALSE,
+    smooth = TRUE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03
+)
 
-jak   <- plot_celltype(decouple, cell_type = "progeny_JAK.STAT",
-                       title = "JAK-STAT", density = FALSE, smooth = TRUE,
-                       title_size = title_size, spot_size = 1.03)
+stat <- plot_spatial(
+    decouple,
+    result = "collectri_STAT1",
+    title = "STAT1",
+    density = FALSE,
+    smooth = TRUE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03
+)
 
-stat  <- plot_celltype(decouple, cell_type = "collectri_STAT1",
-                       title = "STAT1", density = FALSE, smooth = TRUE,
-                       title_size = title_size, spot_size = 1.03)
-
-# ---- TCR preprocessing & plot ----
 tcr$UMIB0 <- colData(tcr)$UMITCR > 0
 tcr$UMIB  <- colData(tcr)$UMITCR >= 5
 tcr <- preprocess(tcr, min_umi = 87)
 
-tcr5 <- plot_celltype(
-  tcr, cell_type = "UMIB",
-  density = FALSE, title = "TCR",
-  smooth = FALSE, show_image = TRUE,
-  palette = "Oslo", show_legend = FALSE,
-  zoom = TRUE, palette_type = "discrete",
+tcr5 <- plot_spatial(
+  tcr,
+  result = "UMIB",
+  density = FALSE,
+  title = "TCR",
+  smooth = FALSE,
+  show_image = TRUE,
+  palette = "Oslo",
+  show_legend = FALSE,
+  zoom = TRUE,
+  palette_type = "discrete",
   image_id = "hires",
-  title_size = title_size, spot_size = 1.03
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03
 )
 
-# ---- Visium object for comparisons / LR ----
 spe <- read10xVisium("./data/sudmeier/750/")
 rownames(spe) <- rowData(spe)$symbol
 spe <- subsetSPE(spe, colRange = c(0, 10000))
 spe <- spacedeconv::normalize(spe)
 
-# (Optional comparison code from Rmd was eval=FALSE; omitted here.)
-
-# ---- Clustering & most-abundant cell types ----
-deconvEPIC      <- readRDS("./export2/paper/3Bepic.rds")
-deconvQuanTIseq <- readRDS("./export2/paper/3Bquantiseq.rds")
+deconvEPIC      <- readRDS("./export/3Bepic.rds")
+deconvQuanTIseq <- readRDS("./export/3Bquantiseq.rds")
 
 assays(deconvEPIC)[["RNA"]] <- assays(deconvEPIC)[["counts"]]
 assays(deconvQuanTIseq)[["RNA"]] <- assays(deconvQuanTIseq)[["counts"]]
@@ -88,33 +133,84 @@ SummarizedExperiment::colData(cluster2)[[cl2]] <- as.character(SummarizedExperim
 SummarizedExperiment::colData(cluster3)[[cl3]] <- as.character(SummarizedExperiment::colData(cluster3)[[cl3]])
 SummarizedExperiment::colData(clusterX)[[clX]] <- as.character(SummarizedExperiment::colData(clusterX)[[clX]])
 
-pclus1 <- plot_celltype(cluster1, "cluster", palette = "Accent",
-                        title = "Clustering 0.1", density = FALSE,
-                        title_size = title_size, spot_size = 1.03, image_id = NULL, show_image = FALSE, palette_type  = "discrete")
+pclus1 <- plot_spatial(cluster1,
+    result = "cluster",
+    palette = "Accent",
+    title = "Clustering 0.1",
+    density = FALSE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03,
+    image_id = NULL,
+    show_image = FALSE,
+    palette_type  = "discrete"
+)
 
-pclus2 <- plot_celltype(cluster2, "cluster", palette = "inferno",
-                        title = "Clustering 0.2", density = FALSE,
-                        title_size = title_size, spot_size = 1.03, image_id = NULL, show_image = FALSE)
+pclus2 <- plot_spatial(
+    cluster2,
+    result = "cluster",
+    palette = "inferno",
+    title = "Clustering 0.2",
+    density = FALSE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03,
+    image_id = NULL,
+    show_image = FALSE
+)
 
-pclus3 <- plot_celltype(cluster3, "cluster", palette = "Accent",
-                        title = "Clustering 0.3", density = FALSE,
-                        title_size = title_size, spot_size = 1.03, image_id = NULL, show_image = FALSE)
+pclus3 <- plot_spatial(
+    cluster3,
+    result = "cluster",
+    palette = "Accent",
+    title = "Clustering 0.3",
+    density = FALSE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03,
+    image_id = NULL,
+    show_image = FALSE
+)
 
-plot_celltype(clusterX, "cluster", palette = "inferno",
-              title = "Clustering EPIC", density = FALSE,
-              title_size = title_size, spot_size = 1.03, image_id = NULL, show_image = FALSE)
+plot_spatial(clusterX,
+    result = "cluster",
+    palette = "inferno",
+    title = "Clustering EPIC",
+    density = FALSE,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
+    spot_size = 1.03,
+    image_id = NULL,
+    show_image = FALSE
+)
 
 mAbundantSTD <- plot_most_abundant(
-  deconvEPIC, method = "epic", palette = "inferno",
-  legend_size = 30, font_size = 20, min_abundance = 0.05,
-  title = "Most Abundant", title_size = title_size, spot_size = 1.03
+  deconvEPIC,
+  method = "epic",
+  palette = "inferno",
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  min_abundance = 0.05,
+  title = "Most Abundant",
+  spot_size = 1.03
 )
 
 mAbundantNoCancer <- plot_most_abundant(
-  deconvEPIC, method = "epic", palette = "inferno",
-  legend_size = 30, font_size = 20, remove = "epic_uncharacterized.cell",
-  min_abundance = 0.05, title = "Without Tumor",
-  title_size = title_size, spot_size = 1.03
+  deconvEPIC,
+  method = "epic",
+  palette = "inferno",
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  remove = "epic_uncharacterized.cell",
+  min_abundance = 0.05,
+  title = "Without Tumor",
+  spot_size = 1.03
 )
 
 mAbundantSTD <- mAbundantSTD +
@@ -129,16 +225,20 @@ mAbundantNoCancer <- mAbundantNoCancer +
     labels = c("B cells", "CAFs", "Endothelial", "Macrophage", "CD4", "CD8", "Undefined")
   )
 
-# ---- Ligand–Receptor ----
 spe <- get_lr(spe, resource = "Consensus", method = "min", organism = "human")
 
-col <- plot_celltype(
-  spe, "lr_COL18A1.ITGB1",
-  density = FALSE, smooth = TRUE, title = "COL18A1-ITGB1",
-  title_size = title_size, spot_size = 1.03
+col <- plot_spatial(
+  spe,
+  result = "lr_COL18A1.ITGB1",
+  density = FALSE,
+  smooth = TRUE,
+  title = "COL18A1-ITGB1",
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03
 )
 
-# ---- Arrange & save figure ----
 grid_layout <- rbind(
   c(1, 2, 3, 4),
   c(5, 6, 7, 8),
@@ -146,8 +246,18 @@ grid_layout <- rbind(
 )
 
 tmp <- grid.arrange(
-  wnt, hypox, myc, tgfb, jak, col, pclus1, pclus3, mAbundantSTD, mAbundantNoCancer,
+  wnt, hypox, myc, tgfb,
+  jak, col, pclus1, pclus3,
+  mAbundantSTD, mAbundantNoCancer,
   layout_matrix = grid_layout
 )
 
-ggsave(filename = "./export2/3B.png", plot = tmp, dpi = 300, width = 19, height = 10, units = "in")
+ggplot2::ggsave(
+    filename = "./export/3B.png",
+    plot = tmp,
+    dpi = 600,
+    width = 20,
+    height = 10,
+    units = "in",
+    bg = "white"
+)
