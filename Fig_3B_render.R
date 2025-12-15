@@ -7,11 +7,11 @@ library(RColorBrewer)
 decouple <- readRDS("./export/3BdecoupleR.rds")
 tcr      <- readRDS("./export/3Btcr.rds")
 
-title_size <- 22
-font_size <- 18
+title_size  <- 22
+font_size   <- 18
 legend_size <- 20
 
-tgfb  <- plot_spatial(
+tgfb <- plot_spatial(
     decouple,
     result = "progeny_TGFb",
     title = "TGFb",
