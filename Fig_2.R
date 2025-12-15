@@ -107,6 +107,5 @@ ggplot2::ggsave(
   plot = grid_2,
   width = 32, height = 17, units = "in",
   dpi = 600,
-  limitsize = FALSE,
   bg = "white"
 )
