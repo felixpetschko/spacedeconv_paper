@@ -5,92 +5,102 @@ deconvEstimate <- readRDS("./export/3AEstimate.rds")
 deconvEPIC <- readRDS("./export/3AEpic.rds")
 deconvQuanTiseq <- readRDS("./export/3AQuantiseq.rds")
 
-title_size <- 25
+title_size <- 35
+font_size <- 25
 
 # ESTIMATE panels
-estimate_tumor <- plot_celltype(
+estimate_tumor <- plot_spatial(
     deconvEstimate,
-    cell_type = "estimate_tumor.purity",
+    result = "estimate_tumor.purity",
     smooth = TRUE,
     density = FALSE,
     title = "ESTIMATE Tumor Purity",
-    title_size = title_size
+    title_size = title_size,
+    font_size = font_size
 )
 
-estimate_immune <- plot_celltype(
+estimate_immune <- plot_spatial(
     deconvEstimate,
-    cell_type = "estimate_immune.score",
+    result = "estimate_immune.score",
     smooth = TRUE,
     density = FALSE,
     title = "ESTIMATE Immune Score",
-    title_size = title_size
+    title_size = title_size,
+    font_size = font_size
 )
 
-estimate_stroma <- plot_celltype(
+estimate_stroma <- plot_spatial(
     deconvEstimate,
-    cell_type = "estimate_stroma.score",
+    result = "estimate_stroma.score",
     smooth = TRUE,
     density = FALSE,
     title = "ESTIMATE Stroma Score",
-    title_size = title_size
+    title_size = title_size,
+    font_size = font_size
 )
 
 # EPIC panels
-epic_caf <- plot_celltype(
+epic_caf <- plot_spatial(
     deconvEPIC,
-    cell_type = "epic_Cancer.associated.fibroblast",
+    result = "epic_Cancer.associated.fibroblast",
     smooth = TRUE,
     density = FALSE,
     title = "EPIC CAFs",
-    title_size = title_size
+    title_size = title_size,
+    font_size = font_size
 )
 
-epic_b <- plot_celltype(
+epic_b <- plot_spatial(
     deconvEPIC,
-    cell_type = "epic_B.cell",
+    result = "epic_B.cell",
     smooth = TRUE,
     density = FALSE,
     title = "EPIC B cells",
-    title_size = title_size
+    title_size = title_size,
+    font_size = font_size
 )
 
-epic_endothelial <- plot_celltype(
+epic_endothelial <- plot_spatial(
     deconvEPIC,
-    cell_type = "epic_Endothelial.cell",
+    result = "epic_Endothelial.cell",
     smooth = TRUE,
     density = FALSE,
     title = "EPIC Endothelial cell",
-    title_size = title_size
+    title_size = title_size,
+    font_size = font_size
 )
 
 # quanTIseq panels
-quantiseq_cd8 <- plot_celltype(
+quantiseq_cd8 <- plot_spatial(
     deconvQuanTiseq,
-    cell_type = "quantiseq_T.cell.CD8.",
+    result = "quantiseq_T.cell.CD8.",
     smooth = TRUE,
     density = FALSE,
     title = "quanTIseq CD8 T cells",
     title_size = title_size,
+    font_size = font_size,
     shift_positive = FALSE
 )
 
-quantiseq_cd4 <- plot_celltype(
+quantiseq_cd4 <- plot_spatial(
     deconvQuanTiseq,
-    cell_type = "aggCD4",
+    result = "aggCD4",
     smooth = TRUE,
     density = FALSE,
     title = "quanTIseq CD4+",
     title_size = title_size,
+    font_size = font_size,
     shift_positive = FALSE
 )
 
-quantiseq_t <- plot_celltype(
+quantiseq_t <- plot_spatial(
     deconvQuanTiseq,
-    cell_type = "aggT",
+    result = "aggT",
     smooth = TRUE,
     density = FALSE,
     title = "quanTIseq T cells",
     title_size = title_size,
+    font_size = font_size,
     shift_positive = FALSE
 )
 
@@ -106,8 +116,8 @@ final_plot <- grid.arrange(
 ggsave(filename = "./export/3A.png",
     plot = final_plot,
     dpi = 600,
-    width = 19,
-    height = 10,
+    width = 32,
+    height = 17,
     units = "in",
     bg = "white"
 )
