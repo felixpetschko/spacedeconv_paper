@@ -6,61 +6,61 @@ library(grid)
 allresults_minor_andersson <- readRDS("./data/allresults_minor_andersson.rds")
 
 # B cells naive (C2L)
-p1 <- spacedeconv::plot_celltype(
+p1 <- spacedeconv::plot_spatial(
   allresults_minor_andersson,
-  cell_type = "c2l_B.cells.Naive",
+  result = "c2l_B.cells.Naive",
   density = FALSE, smooth = FALSE,
-  title_size = 40, font_size = 25, legend_size = 30,
+  title_size = 35, font_size = 25, legend_size = 30,
   title = "C2L Naïve B cells",
   nDigits = 2
 )
 
 # B cells naive (C2L) sqrt
-p2 <- spacedeconv::plot_celltype(
+p2 <- spacedeconv::plot_spatial(
   allresults_minor_andersson,
-  cell_type = "c2l_B.cells.Naive",
+  result = "c2l_B.cells.Naive",
   density = FALSE, smooth = FALSE, transform_scale = "sqrt",
-  title_size = 40, font_size = 25, legend_size = 30,
+  title_size = 35, font_size = 25, legend_size = 30,
   title = "C2L Naïve B cells (sqrt)",
   nDigits = 2
 )
 
 # B cells naive (C2L) log2
-p3 <- spacedeconv::plot_celltype(
+p3 <- spacedeconv::plot_spatial(
   allresults_minor_andersson,
-  cell_type = "c2l_B.cells.Naive",
+  result = "c2l_B.cells.Naive",
   density = FALSE, smooth = FALSE, transform_scale = "log2",
-  title_size = 40, font_size = 25, legend_size = 30,
+  title_size = 35, font_size = 25, legend_size = 30,
   title = "C2L Naïve B cells (log2)",
   nDigits = 2, pseudocount = 0 # added pseudo_count = 0
 )
 
 # B cells naive smoothed
-p4 <- spacedeconv::plot_celltype(
+p4 <- spacedeconv::plot_spatial(
   allresults_minor_andersson,
-  cell_type = "c2l_B.cells.Naive",
+  result = "c2l_B.cells.Naive",
   density = FALSE, smooth = TRUE,
-  title_size = 40, font_size = 25, legend_size = 30,
+  title_size = 35, font_size = 25, legend_size = 30,
   title = "C2L Naïve B cells (smoothed)",
   nDigits = 2
 )
 
 # iCAF (C2L)
-p5 <- spacedeconv::plot_celltype(
+p5 <- spacedeconv::plot_spatial(
   allresults_minor_andersson,
-  cell_type = "c2l_CAFs.MSC.iCAF.like",
+  result = "c2l_CAFs.MSC.iCAF.like",
   density = FALSE, smooth = TRUE,
-  title_size = 40, font_size = 25, legend_size = 30,
+  title_size = 35, font_size = 25, legend_size = 30,
   title = "C2L iCAF (smoothed)",
   nDigits = 2
 )
 
 # myCAF (C2L)
-p6 <- spacedeconv::plot_celltype(
+p6 <- spacedeconv::plot_spatial(
   allresults_minor_andersson,
-  cell_type = "c2l_CAFs.myCAF.like",
+  result = "c2l_CAFs.myCAF.like",
   density = FALSE, smooth = TRUE,
-  title_size = 40, font_size = 25, legend_size = 30,
+  title_size = 35, font_size = 25, legend_size = 30,
   title = "C2L myCAF (smoothed)",
   nDigits = 2
 )
@@ -71,7 +71,7 @@ p7 <- spacedeconv::plot_comparison(
   cell_type_1 = "c2l_CAFs.MSC.iCAF.like",
   cell_type_2 = "c2l_CAFs.myCAF.like",
   density = FALSE, smooth = TRUE,
-  title_size = 40, font_size = 25, legend_size = 30,
+  title_size = 35, font_size = 25, legend_size = 30,
   title = "C2L iCAF vs. myCAF (smoothed)",
   palette = "Purple-Green", reverse_palette = TRUE,
   shift_positive = FALSE,
@@ -79,11 +79,11 @@ p7 <- spacedeconv::plot_comparison(
 )
 
 # RCTD most abundant cancer molecular subtype
-p8 <- spacedeconv::plot_celltype(
+p8 <- spacedeconv::plot_spatial(
   allresults_minor_andersson,
-  cell_type = "rctd_Cancer.LumB.SC",
+  result = "rctd_Cancer.LumB.SC",
   density = FALSE, smooth = TRUE,
-  title_size = 40, font_size = 25, legend_size = 30,
+  title_size = 35, font_size = 25, legend_size = 30,
   title = "RCTD LumB (smoothed)",
   nDigits = 2
 )
@@ -106,6 +106,7 @@ ggplot2::ggsave(
   filename = "./export/fig_2B.png",
   plot = grid_2,
   width = 32, height = 17, units = "in",
-  dpi = 300,
-  limitsize = FALSE
+  dpi = 600,
+  limitsize = FALSE,
+  bg = "white"
 )
