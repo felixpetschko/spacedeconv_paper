@@ -63,7 +63,12 @@ spe <- preprocess(spe, min_umi = 87)
 spe <- spacedeconv::normalize(spe)
 
 deconvEPIC <- deconvolute(spe, method = "epic", assay_sp = "cpm", tumor = TRUE)
-deconvQuanTIseq <- deconvolute(spe, method = "quantiseq", assay_sp = "cpm", tumor = TRUE)
+deconvQuanTIseq <- deconvolute(
+  spe,
+  method = "quantiseq",
+  assay_sp = "cpm",
+  tumor = TRUE
+)
 
 saveRDS(deconvEPIC, file = "./export/3Bepic.rds")
 saveRDS(deconvQuanTIseq, file = "./export/3Bquantiseq.rds")
