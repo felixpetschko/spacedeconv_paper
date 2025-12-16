@@ -286,11 +286,11 @@ tmp <- grid.arrange(
 )
 
 ggplot2::ggsave(
-  filename = "./export/3B.png",
+  filename = "./export/fig_3B.png",
   plot = tmp,
   dpi = 600,
   width = 20,
-  height = 10,
+  height = 15,
   units = "in",
   bg = "white"
 )
