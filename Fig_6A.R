@@ -1,4 +1,3 @@
-
 library(spacedeconv)
 library(SpatialExperiment)
 library(readr)
@@ -44,6 +43,10 @@ for (spot in colnames(spe)) {
 colData(spe) <- cbind(colData(spe), TCRstat)
 pb$terminate()
 
+title_size <- 22
+font_size <- 18
+legend_size <- 20
+
 ie <- plot_comparison(
     spe,
     cell_type_1 = "IEUnknown",
@@ -53,7 +56,9 @@ ie <- plot_comparison(
     title = "IE Unknown vs Viral",
     palette = "Vik",
     reverse_palette = TRUE,
-    title_size = 25,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     spot_size = 1.03
 )
 
@@ -65,7 +70,9 @@ vdj <- plot_comparison(
     smooth = FALSE,
     title = "VDJUnknown vs Viral",
     palette = "Vik",
-    title_size = 25,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     spot_size = 1.03,
     reverse_palette = TRUE
 )
@@ -77,9 +84,9 @@ tcr$UMIB <- colData(tcr)$UMITCR >= 5
 
 tcr <- preprocess(tcr, min_umi = 87)
 
-tcr5 <- plot_celltype(
+tcr5 <- plot_spatial(
     tcr,
-    cell_type = "UMIB",
+    result = "UMIB",
     density = FALSE,
     title = "TCR UMI > 5",
     smooth = FALSE,
@@ -89,13 +96,15 @@ tcr5 <- plot_celltype(
     zoom = TRUE,
     palette_type = "discrete",
     image_id = "hires",
-    title_size = 25,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     spot_size = 1.03
 )
 
-tcr0 <- plot_celltype(
+tcr0 <- plot_spatial(
     tcr,
-    cell_type = "UMIB0",
+    result = "UMIB0",
     density = FALSE,
     title = "TCR All",
     smooth = FALSE,
@@ -105,13 +114,15 @@ tcr0 <- plot_celltype(
     zoom = TRUE,
     palette_type = "discrete",
     image_id = "hires",
-    title_size = 25,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     spot_size = 1.03
 )
 
-tcrUMI <- plot_celltype(
+tcrUMI <- plot_spatial(
     tcr,
-    cell_type = "UMITCR",
+    result = "UMITCR",
     density = FALSE,
     title = "TCR UMI",
     smooth = FALSE,
@@ -119,7 +130,9 @@ tcrUMI <- plot_celltype(
     show_legend = TRUE,
     zoom = TRUE,
     image_id = "hires",
-    title_size = 25,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     spot_size = 1.03
 )
 
@@ -130,8 +143,9 @@ final <- grid.arrange(tcrUMI, tcr5, ie, layout_matrix = grid_layout)
 ggsave(
     filename = "./export/fig_6A.png",
     plot = final,
-    dpi = 300,
+    dpi = 600,
     width = 15,
-    height = 7,
-    units = "in"
+    height = 5,
+    units = "in",
+    bg = "white"
 )
