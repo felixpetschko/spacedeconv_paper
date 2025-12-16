@@ -25,13 +25,19 @@ for (clonotype in unique(metadata$Clonoytpe_ids)) {
   spe <- annotate_spots(spe, tmp$barcode, name = clonotype)
 }
 
-deconvEstimate <- deconvolute(spe, method = "estimate",  assay_sp = "cpm")
+deconvEstimate <- deconvolute(spe, method = "estimate", assay_sp = "cpm")
 saveRDS(deconvEstimate, file = "./export/3AEstimate.rds")
 
 deconvEPIC <- deconvolute(spe, method = "epic", assay_sp = "cpm", tumor = TRUE)
-saveRDS(deconvEPIC,     file = "./export/3AEpic.rds")
+saveRDS(deconvEPIC, file = "./export/3AEpic.rds")
 
-deconvQuanTiseq <- deconvolute(spe, method = "quantiseq", assay_sp = "cpm", tumor = TRUE)
+deconvQuanTiseq <- deconvolute(
+  spe,
+  method = "quantiseq",
+  assay_sp = "cpm",
+  tumor = TRUE
+)
+
 deconvQuanTiseq <- aggregate_results(
   deconvQuanTiseq,
   cell_type_1 = "quantiseq_T.cell.CD4...non.regulatory.",
