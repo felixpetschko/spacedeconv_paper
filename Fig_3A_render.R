@@ -16,9 +16,9 @@ estimate_tumor <- plot_spatial(
     smooth = TRUE,
     density = FALSE,
     title = "ESTIMATE Tumor Purity",
-    title_size = title_size ,
-    font_size = font_size ,
-    legend_size = legend_size 
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size
 )
 
 estimate_immune <- plot_spatial(
@@ -27,9 +27,9 @@ estimate_immune <- plot_spatial(
     smooth = TRUE,
     density = FALSE,
     title = "ESTIMATE Immune Score",
-    title_size = title_size ,
-    font_size = font_size ,
-    legend_size = legend_size 
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size
 )
 
 estimate_stroma <- plot_spatial(
@@ -38,9 +38,9 @@ estimate_stroma <- plot_spatial(
     smooth = TRUE,
     density = FALSE,
     title = "ESTIMATE Stroma Score",
-    title_size = title_size ,
-    font_size = font_size ,
-    legend_size = legend_size 
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size
 )
 
 # EPIC panels
@@ -50,9 +50,9 @@ epic_caf <- plot_spatial(
     smooth = TRUE,
     density = FALSE,
     title = "EPIC CAFs",
-    title_size = title_size ,
-    font_size = font_size ,
-    legend_size = legend_size 
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size
 )
 
 epic_b <- plot_spatial(
@@ -61,9 +61,9 @@ epic_b <- plot_spatial(
     smooth = TRUE,
     density = FALSE,
     title = "EPIC B cells",
-    title_size = title_size ,
-    font_size = font_size ,
-    legend_size = legend_size 
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size
 )
 
 epic_endothelial <- plot_spatial(
@@ -72,9 +72,9 @@ epic_endothelial <- plot_spatial(
     smooth = TRUE,
     density = FALSE,
     title = "EPIC Endothelial cell",
-    title_size = title_size ,
-    font_size = font_size ,
-    legend_size = legend_size 
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size
 )
 
 # quanTIseq panels
@@ -84,9 +84,9 @@ quantiseq_cd8 <- plot_spatial(
     smooth = TRUE,
     density = FALSE,
     title = "quanTIseq CD8 T cells",
-    title_size = title_size ,
-    font_size = font_size ,
-    legend_size = legend_size ,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     shift_positive = FALSE
 )
 
@@ -96,9 +96,9 @@ quantiseq_cd4 <- plot_spatial(
     smooth = TRUE,
     density = FALSE,
     title = "quanTIseq CD4+",
-    title_size = title_size ,
-    font_size = font_size ,
-    legend_size = legend_size ,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     shift_positive = FALSE
 )
 
@@ -108,22 +108,28 @@ quantiseq_t <- plot_spatial(
     smooth = TRUE,
     density = FALSE,
     title = "quanTIseq T cells",
-    title_size = title_size ,
-    font_size = font_size ,
-    legend_size = legend_size ,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     shift_positive = FALSE
 )
 
-grid_layout <- rbind(c(1, 2, 3, 4),
-                     c(5, 6, 7, 8))
+grid_layout <- rbind(c(1, 2, 3, 4), c(5, 6, 7, 8))
 
 final_plot <- grid.arrange(
-  estimate_tumor, estimate_immune, estimate_stroma, epic_caf,
-  epic_b, epic_endothelial, quantiseq_t, quantiseq_cd8,
-  layout_matrix = grid_layout
+    estimate_tumor,
+    estimate_immune,
+    estimate_stroma,
+    epic_caf,
+    epic_b,
+    epic_endothelial,
+    quantiseq_t,
+    quantiseq_cd8,
+    layout_matrix = grid_layout
 )
 
-ggsave(filename = "./export/fig_3A.png",
+ggsave(
+    filename = "./export/fig_3A.png",
     plot = final_plot,
     dpi = 600,
     width = 20,
