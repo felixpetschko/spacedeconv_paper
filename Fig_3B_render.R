@@ -5,86 +5,86 @@ library(gridExtra)
 library(RColorBrewer)
 
 decouple <- readRDS("./export/3BdecoupleR.rds")
-tcr      <- readRDS("./export/3Btcr.rds")
+tcr <- readRDS("./export/3Btcr.rds")
 
-title_size  <- 22
-font_size   <- 18
+title_size <- 22
+font_size <- 18
 legend_size <- 20
 
 tgfb <- plot_spatial(
-    decouple,
-    result = "progeny_TGFb",
-    title = "TGFb",
-    density = FALSE,
-    smooth = TRUE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03
+  decouple,
+  result = "progeny_TGFb",
+  title = "TGFb",
+  density = FALSE,
+  smooth = TRUE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03
 )
 
 wnt <- plot_spatial(
-    decouple,
-    result = "progeny_WNT",
-    title = "WNT",
-    density = FALSE,
-    smooth = TRUE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03
+  decouple,
+  result = "progeny_WNT",
+  title = "WNT",
+  density = FALSE,
+  smooth = TRUE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03
 )
 
 hypox <- plot_spatial(
-    decouple,
-    result = "progeny_Hypoxia",
-    title = "Hypoxia",
-    density = FALSE,
-    smooth = TRUE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03
+  decouple,
+  result = "progeny_Hypoxia",
+  title = "Hypoxia",
+  density = FALSE,
+  smooth = TRUE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03
 )
 
 myc <- plot_spatial(
-    decouple,
-    result = "collectri_MYC",
-    title = "MYC",
-    density = FALSE,
-    smooth = TRUE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03
+  decouple,
+  result = "collectri_MYC",
+  title = "MYC",
+  density = FALSE,
+  smooth = TRUE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03
 )
 
 jak <- plot_spatial(
-    decouple,
-    result = "progeny_JAK.STAT",
-    title = "JAK-STAT",
-    density = FALSE,
-    smooth = TRUE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03
+  decouple,
+  result = "progeny_JAK.STAT",
+  title = "JAK-STAT",
+  density = FALSE,
+  smooth = TRUE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03
 )
 
 stat <- plot_spatial(
-    decouple,
-    result = "collectri_STAT1",
-    title = "STAT1",
-    density = FALSE,
-    smooth = TRUE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03
+  decouple,
+  result = "collectri_STAT1",
+  title = "STAT1",
+  density = FALSE,
+  smooth = TRUE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03
 )
 
 tcr$UMIB0 <- colData(tcr)$UMITCR > 0
-tcr$UMIB  <- colData(tcr)$UMITCR >= 5
+tcr$UMIB <- colData(tcr)$UMITCR >= 5
 tcr <- preprocess(tcr, min_umi = 87)
 
 tcr5 <- plot_spatial(
@@ -110,7 +110,7 @@ rownames(spe) <- rowData(spe)$symbol
 spe <- subsetSPE(spe, colRange = c(0, 10000))
 spe <- spacedeconv::normalize(spe)
 
-deconvEPIC      <- readRDS("./export/3Bepic.rds")
+deconvEPIC <- readRDS("./export/3Bepic.rds")
 deconvQuanTIseq <- readRDS("./export/3Bquantiseq.rds")
 
 assays(deconvEPIC)[["RNA"]] <- assays(deconvEPIC)[["counts"]]
@@ -118,10 +118,25 @@ assays(deconvQuanTIseq)[["RNA"]] <- assays(deconvQuanTIseq)[["counts"]]
 
 deconvQuanTIseq <- deconvQuanTIseq[!duplicated(rownames(deconvQuanTIseq)), ]
 
-cluster1 <- spacedeconv::cluster(deconvQuanTIseq, data = "expression", clusres = 0.1)
-cluster2 <- spacedeconv::cluster(deconvQuanTIseq, data = "expression", clusres = 0.2)
-cluster3 <- spacedeconv::cluster(deconvQuanTIseq, data = "expression", clusres = 0.3)
-clusterX <- spacedeconv::cluster(deconvEPIC,     spmethod = "epic",     nclusters = 3)
+cluster1 <- spacedeconv::cluster(
+  deconvQuanTIseq,
+  data = "expression",
+  clusres = 0.1
+)
+
+cluster2 <- spacedeconv::cluster(
+  deconvQuanTIseq,
+  data = "expression",
+  clusres = 0.2
+)
+
+cluster3 <- spacedeconv::cluster(
+  deconvQuanTIseq,
+  data = "expression",
+  clusres = 0.3
+)
+
+clusterX <- spacedeconv::cluster(deconvEPIC, spmethod = "epic", nclusters = 3)
 
 cl1 <- "cluster_expression_res_0.1"
 cl2 <- "cluster_expression_res_0.2"
@@ -133,59 +148,61 @@ SummarizedExperiment::colData(cluster2)[[cl2]] <- as.character(SummarizedExperim
 SummarizedExperiment::colData(cluster3)[[cl3]] <- as.character(SummarizedExperiment::colData(cluster3)[[cl3]])
 SummarizedExperiment::colData(clusterX)[[clX]] <- as.character(SummarizedExperiment::colData(clusterX)[[clX]])
 
-pclus1 <- plot_spatial(cluster1,
-    result = "cluster",
-    palette = "Accent",
-    title = "Clustering 0.1",
-    density = FALSE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03,
-    image_id = NULL,
-    show_image = FALSE,
-    palette_type  = "discrete"
+pclus1 <- plot_spatial(
+  cluster1,
+  result = "cluster",
+  palette = "Accent",
+  title = "Clustering 0.1",
+  density = FALSE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03,
+  image_id = NULL,
+  show_image = FALSE,
+  palette_type = "discrete"
 )
 
 pclus2 <- plot_spatial(
-    cluster2,
-    result = "cluster",
-    palette = "inferno",
-    title = "Clustering 0.2",
-    density = FALSE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03,
-    image_id = NULL,
-    show_image = FALSE
+  cluster2,
+  result = "cluster",
+  palette = "inferno",
+  title = "Clustering 0.2",
+  density = FALSE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03,
+  image_id = NULL,
+  show_image = FALSE
 )
 
 pclus3 <- plot_spatial(
-    cluster3,
-    result = "cluster",
-    palette = "Accent",
-    title = "Clustering 0.3",
-    density = FALSE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03,
-    image_id = NULL,
-    show_image = FALSE
+  cluster3,
+  result = "cluster",
+  palette = "Accent",
+  title = "Clustering 0.3",
+  density = FALSE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03,
+  image_id = NULL,
+  show_image = FALSE
 )
 
-plot_spatial(clusterX,
-    result = "cluster",
-    palette = "inferno",
-    title = "Clustering EPIC",
-    density = FALSE,
-    title_size = title_size,
-    font_size = font_size,
-    legend_size = legend_size,
-    spot_size = 1.03,
-    image_id = NULL,
-    show_image = FALSE
+plot_spatial(
+  clusterX,
+  result = "cluster",
+  palette = "inferno",
+  title = "Clustering EPIC",
+  density = FALSE,
+  title_size = title_size,
+  font_size = font_size,
+  legend_size = legend_size,
+  spot_size = 1.03,
+  image_id = NULL,
+  show_image = FALSE
 )
 
 mAbundantSTD <- plot_most_abundant(
@@ -216,13 +233,29 @@ mAbundantNoCancer <- plot_most_abundant(
 mAbundantSTD <- mAbundantSTD +
   ggplot2::scale_fill_manual(
     values = RColorBrewer::brewer.pal(7, "Accent"),
-    labels = c("B cells", "CAFs", "Endothelial", "Macrophage", "CD4", "CD8", "Tumor")
+    labels = c(
+      "B cells",
+      "CAFs",
+      "Endothelial",
+      "Macrophage",
+      "CD4",
+      "CD8",
+      "Tumor"
+    )
   )
 
 mAbundantNoCancer <- mAbundantNoCancer +
   ggplot2::scale_fill_manual(
     values = c(RColorBrewer::brewer.pal(6, "Accent"), "#D3D3D3"),
-    labels = c("B cells", "CAFs", "Endothelial", "Macrophage", "CD4", "CD8", "Undefined")
+    labels = c(
+      "B cells",
+      "CAFs",
+      "Endothelial",
+      "Macrophage",
+      "CD4",
+      "CD8",
+      "Undefined"
+    )
   )
 
 spe <- get_lr(spe, resource = "Consensus", method = "min", organism = "human")
@@ -253,11 +286,11 @@ tmp <- grid.arrange(
 )
 
 ggplot2::ggsave(
-    filename = "./export/3B.png",
-    plot = tmp,
-    dpi = 600,
-    width = 20,
-    height = 10,
-    units = "in",
-    bg = "white"
+  filename = "./export/3B.png",
+  plot = tmp,
+  dpi = 600,
+  width = 20,
+  height = 10,
+  units = "in",
+  bg = "white"
 )
