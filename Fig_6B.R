@@ -15,17 +15,6 @@ spe <- preprocess(spe)
 spe <- spacedeconv::normalize(spe)
 rownames(spe) <- rowData(spe)$symbol
 
-plot_spatial(
-    spe,
-    result = "tls",
-    offset_rotation = TRUE,
-    density = FALSE,
-    legend_size = 50,
-    font_size = 30,
-    palette = "BluYl",
-    title = "TLS"
-)
-
 deconv <- deconvolute(
     spe,
     method = "quantiseq",
@@ -42,6 +31,10 @@ geneset <- c(
 
 deconv <- gene_set_score(deconv, genes = geneset, assay = "cpm")
 
+title_size <- 22
+font_size <- 18
+legend_size <- 20
+
 patho <- plot_spatial(
     deconv,
     result = "tls",
@@ -49,7 +42,9 @@ patho <- plot_spatial(
     palette = "BluYl",
     offset_rotation = TRUE,
     title = "Pathology annotation",
-    title_size = 25,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     spot_size = 1.03
 )
 
@@ -59,7 +54,9 @@ geneSet <- plot_spatial(
     density = FALSE,
     offset_rotation = TRUE,
     title = "TLS score",
-    title_size = 25,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     spot_size = 1.03
 )
 
@@ -70,7 +67,9 @@ qBcells <- plot_spatial(
     offset_rotation = TRUE,
     smooth = TRUE,
     title = "quanTIseq B cells smoothed",
-    title_size = 25,
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
     spot_size = 1.03
 )
 
