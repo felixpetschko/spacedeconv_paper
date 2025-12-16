@@ -12,7 +12,7 @@ allresults_minor_44971 <- readRDS("./data/allresults_minor_44971.rds")
 allresults_minor_4290 <- readRDS("./data/allresults_minor_4290.rds") # lumA
 allresults_minor_4535 <- readRDS("./data/allresults_minor_4535.rds") # lumB
 
-title_size <- 5
+title_size <- 0 #not needed
 font_size <- 18
 legend_size <- 20
 
@@ -328,7 +328,7 @@ ggsave(
   plot = grid_1,
   dpi = 600,
   width = 20,
-  height = 35,
+  height = 30,
   units = "in",
   bg = "white"
 )
