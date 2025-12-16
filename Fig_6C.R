@@ -34,6 +34,8 @@ count_cells_within_radius <- function(spot_row, a1, radius) {
     sum(distances <= radius)
 }
 
+coords_df <- as.data.frame(coords)
+
 spe$cell_density <- unlist(
     pblapply(
         seq_len(nrow(coords_df)),
@@ -41,10 +43,6 @@ spe$cell_density <- unlist(
         cl = 1
     )
 )
-
-plot_umi_count(spe)
-plot_celltype(spe, cell_type = "cell_density")
-cat(paste0("Mean Number of cells per spot: ", mean(spe$cell_density), "\n"))
 
 deconv <- readRDS("./data/allresults_minor_andersson.rds")
 deconv$cell_counts <- spe$cell_density
@@ -57,22 +55,30 @@ smooth <- FALSE
 
 cutout <- subsetSPE(deconv, colRange = c(11200, 22000), rowRange = c(0, 15300))
 
-abs <- plot_celltype(
+title_size <- 22
+font_size <- 18
+legend_size <- 20
+
+abs <- plot_spatial(
     spe,
-    "cell_density",
+    result = "cell_density",
     density = FALSE,
     title = "Cell counts",
     smooth = smooth,
-    title_size = 25
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
 )
 
-cut <- plot_celltype(
+cut <- plot_spatial(
     cutout,
-    "cell_counts",
+    result = "cell_counts",
     density = FALSE,
     title = "Cell counts subset",
     smooth = smooth,
-    title_size = 25
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
 )
 
 xmin <- 270
@@ -96,40 +102,48 @@ abs <- abs +
     ) +
     theme(axis.title.x = element_blank(), axis.title.y = element_blank())
 
-lumb <- plot_celltype(
+lumb <- plot_spatial(
     cutout,
-    "rctd_Cancer.LumB.SC",
+    result = "rctd_Cancer.LumB.SC",
     density = FALSE,
     title = "Cancer (LumB)",
     smooth = smooth,
-    title_size = 25
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
 )
 
-lumbabs <- plot_celltype(
+lumbabs <- plot_spatial(
     cutout,
-    "rctd_Cancer.LumB.SC_absolute",
+    result = "rctd_Cancer.LumB.SC_absolute",
     density = FALSE,
     title = "Cancer (LumB) absolute",
     smooth = smooth,
-    title_size = 25
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
 )
 
-caf <- plot_celltype(
+caf <- plot_spatial(
     cutout,
-    "rctd_CAFs.myCAF.like",
+    result = "rctd_CAFs.myCAF.like",
     density = FALSE,
     title = "myCAFs",
     smooth = smooth,
-    title_size = 25
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
 )
 
-cafabs <- plot_celltype(
+cafabs <- plot_spatial(
     cutout,
-    "rctd_CAFs.myCAF.like_absolute",
+    result = "rctd_CAFs.myCAF.like_absolute",
     density = FALSE,
     title = "myCAFs absolute",
     smooth = smooth,
-    title_size = 25
+    title_size = title_size,
+    font_size = font_size,
+    legend_size = legend_size,
 )
 
 grid_layout <- rbind(c(1, 2, 3),
@@ -142,10 +156,10 @@ final <- grid.arrange(
 )
 
 ggsave(
-    filename = "./export2/fig_6C.png",
+    filename = "./export/fig_6C.png",
     plot = final,
     dpi = 600,
-    width = 20,
+    width = 15,
     height = 10,
     units = "in",
     bg = "white"
