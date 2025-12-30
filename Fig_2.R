@@ -135,7 +135,7 @@ final_plot <- grid.arrange(
 
 # Save the UMAP as a high-resolution PNG
 ggplot2::ggsave(
-  filename = "./export/fig_2B.png",
+  filename = "./export/fig_2.png",
   plot = final_plot,
   width = 20,
   height = 10,
