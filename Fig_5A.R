@@ -77,7 +77,7 @@ grid_layout <- rbind(c(1, 2, 3))
 final <- grid.arrange(patho, geneSet, qBcells, layout_matrix = grid_layout)
 
 ggsave(
-    filename = "./export/fig_6B.png",
+    filename = "./export/fig_5A.png",
     plot = final,
     dpi = 600,
     width = 15,

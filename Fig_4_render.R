@@ -146,7 +146,7 @@ final <- grid.arrange(
 )
 
 ggsave(
-    filename = "./export/fig_4A.png",
+    filename = "./export/fig_4.png",
     plot = final,
     dpi = 600,
     width = 15,
