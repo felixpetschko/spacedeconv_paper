@@ -73,13 +73,6 @@ add_enum_list <- function(plots, labels) {
 }
 
 plots <- add_enum_list(list(p5, p6, p7, p8), LETTERS[5:8])
-plots <- lapply(plots, function(p) {
-  p + theme(
-    plot.title.position = "panel",
-    plot.title = element_text(hjust = 0, margin = margin(b = 6)),
-    plot.margin = margin(t = 8, r = 0, b = 0, l = 0)
-  )
-})
 
 # Arrange the plots in a grid
 final_plot <- plot_grid(
