@@ -18,7 +18,7 @@ p1 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "C2L Naïve B cells",
+  title = "Naïve B cells",
   nDigits = 2
 )
 
@@ -32,7 +32,7 @@ p2 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "C2L Naïve B cells (sqrt)",
+  title = "Naïve B cells (sqrt)",
   nDigits = 2
 )
 
@@ -46,7 +46,7 @@ p3 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "C2L Naïve B cells (log2)",
+  title = "Naïve B cells (log2)",
   nDigits = 2,
   pseudocount = 0
 )
@@ -60,7 +60,7 @@ p4 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "C2L Naïve B cells (smoothed)",
+  title = "Naïve B cells (smoothed)",
   nDigits = 2
 )
 
@@ -73,7 +73,7 @@ p5 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "C2L iCAF (smoothed)",
+  title = "iCAF (smoothed)",
   nDigits = 2
 )
 
@@ -86,7 +86,7 @@ p6 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "C2L myCAF (smoothed)",
+  title = "myCAF (smoothed)",
   nDigits = 2
 )
 
@@ -100,7 +100,7 @@ p7 <- spacedeconv::plot_comparison(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "C2L iCAF vs. myCAF (smoothed)",
+  title = "iCAF vs. myCAF (smoothed)",
   palette = "Purple-Green",
   reverse_palette = TRUE,
   shift_positive = FALSE,
