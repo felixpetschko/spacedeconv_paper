@@ -147,9 +147,14 @@ cafabs <- plot_spatial(
 )
 
 add_enum <- function(p, label) {
-    p + ggplot2::ggtitle(
-        bquote(bold(.(label)) * ")" * " " * .(p$labels$title))
-    )
+    p +
+        labs(tag = paste0(label)) +
+        theme(
+            plot.title = element_text(hjust = 0.5),
+            plot.title.position = "plot",
+            plot.tag = element_text(hjust = 0, vjust = 1, face = "bold", size = 24),
+            plot.tag.position = c(0, 1)
+        )
 }
 
 add_enum_list <- function(plots, labels) {
