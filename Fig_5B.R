@@ -117,7 +117,7 @@ lumbabs <- plot_spatial(
     cutout,
     result = "rctd_Cancer.LumB.SC_absolute",
     density = FALSE,
-    title = "Cancer (LumB) absolute",
+    title = "Cancer (LumB) abs.",
     smooth = smooth,
     title_size = title_size,
     font_size = font_size,
@@ -139,19 +139,36 @@ cafabs <- plot_spatial(
     cutout,
     result = "rctd_CAFs.myCAF.like_absolute",
     density = FALSE,
-    title = "myCAFs absolute",
+    title = "myCAFs abs.",
     smooth = smooth,
     title_size = title_size,
     font_size = font_size,
     legend_size = legend_size,
 )
 
-grid_layout <- rbind(c(1, 2, 3),
-                     c(4, 5, 6))
+add_enum <- function(p, label) {
+    p + ggplot2::ggtitle(
+        bquote(bold(.(label)) * ")" * " " * .(p$labels$title))
+    )
+}
+
+add_enum_list <- function(plots, labels) {
+    Map(add_enum, plots, labels)
+}
+
+plots <- add_enum_list(
+    list(abs, lumb, caf, cut, lumbabs, cafabs),
+    LETTERS[1:6]
+)
+
+grid_layout <- rbind(
+    c(1, 2),
+    c(3, 4),
+    c(5, 6)
+)
 
 final <- grid.arrange(
-    abs, lumb, caf,
-    cut, lumbabs, cafabs,
+    grobs = plots,
     layout_matrix = grid_layout
 )
 
@@ -159,8 +176,8 @@ ggsave(
     filename = "./export/fig_5B.png",
     plot = final,
     dpi = 600,
-    width = 15,
-    height = 10,
+    width = 10,
+    height = 15,
     units = "in",
     bg = "white"
 )
