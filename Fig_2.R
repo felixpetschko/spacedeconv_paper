@@ -1,7 +1,6 @@
 library(spacedeconv)
-library(gridExtra)
 library(ggplot2)
-library(grid)
+library(cowplot)
 
 allresults_minor_andersson <- readRDS("./data/allresults_minor_andersson.rds")
 
@@ -130,16 +129,12 @@ add_enum_list <- function(plots) {
 
 plots <- add_enum_list(list(p1, p2, p3, p4, p5, p6, p7, p8))
 
-# Create a grid layout
-grid_layout <- rbind(
-  c(1, 2, 3, 4),
-  c(5, 6, 7, 8)
-)
-
 # Arrange the plots in a grid
-final_plot <- grid.arrange(
-  grobs = plots,
-  layout_matrix = grid_layout
+final_plot <- plot_grid(
+  plotlist = plots,
+  ncol = 4,
+  align = "hv",
+  axis = "tblr"
 )
 
 # Save the UMAP as a high-resolution PNG
