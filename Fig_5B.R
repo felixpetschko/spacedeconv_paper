@@ -74,7 +74,7 @@ cut <- plot_spatial(
     cutout,
     result = "cell_counts",
     density = FALSE,
-    title = "Cell counts subset",
+    title = "Cell counts ROI",
     smooth = smooth,
     title_size = title_size,
     font_size = font_size,
