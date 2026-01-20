@@ -120,6 +120,16 @@ p8 <- spacedeconv::plot_spatial(
   nDigits = 2
 )
 
+add_enum <- function(p, label) {
+  p + ggplot2::ggtitle(paste0(label, ") ", p$labels$title))
+}
+
+add_enum_list <- function(plots) {
+  Map(function(p, i) add_enum(p, LETTERS[i]), plots, seq_along(plots))
+}
+
+plots <- add_enum_list(list(p1, p2, p3, p4, p5, p6, p7, p8))
+
 # Create a grid layout
 grid_layout <- rbind(
   c(1, 2, 3, 4),
@@ -128,8 +138,7 @@ grid_layout <- rbind(
 
 # Arrange the plots in a grid
 final_plot <- grid.arrange(
-  p1, p2, p3, p4,
-  p5, p6, p7, p8,
+  grobs = plots,
   layout_matrix = grid_layout
 )
 
