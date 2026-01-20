@@ -17,7 +17,7 @@ p5 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "iCAF (smoothed)",
+  title = "iCAF (sm.)",
   nDigits = 2
 )
 
@@ -30,7 +30,7 @@ p6 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "myCAF (smoothed)",
+  title = "myCAF (sm.)",
   nDigits = 2
 )
 
@@ -44,7 +44,7 @@ p7 <- spacedeconv::plot_comparison(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "iCAF vs. myCAF (smoothed)",
+  title = "iCAF vs. myCAF (sm.)",
   palette = "Purple-Green",
   reverse_palette = TRUE,
   shift_positive = FALSE,
@@ -60,12 +60,20 @@ p8 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "LumB (smoothed)",
+  title = "LumB (sm.)",
   nDigits = 2
 )
 
 add_enum <- function(p, label) {
-  p + ggplot2::ggtitle(paste0(label, ") ", p$labels$title))
+  p +
+    labs(tag = paste0(label)) +
+    theme(
+      plot.title = element_text(hjust = 0.5, vjust = 1),
+      plot.title.position = "plot",
+      plot.tag = element_text(hjust = 0, vjust = 1, face = "bold", size = 24),
+      plot.tag.position = c(0, 1),
+      plot.margin = margin(6, 6, 6, 6)
+    )
 }
 
 add_enum_list <- function(plots, labels) {
