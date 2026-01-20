@@ -80,7 +80,7 @@ add_enum_list <- function(plots, labels) {
   Map(add_enum, plots, labels)
 }
 
-plots <- add_enum_list(list(p5, p6, p7, p8), LETTERS[5:8])
+plots <- add_enum_list(list(p5, p6, p7, p8), LETTERS[1:4])
 
 # Arrange the plots in a grid
 final_plot <- plot_grid(
