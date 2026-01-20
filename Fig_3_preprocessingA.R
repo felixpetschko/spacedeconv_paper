@@ -16,7 +16,7 @@ estimate_tumor <- plot_spatial(
   result = "estimate_tumor.purity",
   smooth = TRUE,
   density = FALSE,
-  title = "ESTIMATE Tumor Purity",
+  title = "Tumor Purity",
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size
@@ -27,7 +27,7 @@ estimate_immune <- plot_spatial(
   result = "estimate_immune.score",
   smooth = TRUE,
   density = FALSE,
-  title = "ESTIMATE Immune Score",
+  title = "Immune Score",
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size
@@ -38,7 +38,7 @@ estimate_stroma <- plot_spatial(
   result = "estimate_stroma.score",
   smooth = TRUE,
   density = FALSE,
-  title = "ESTIMATE Stroma Score",
+  title = "Stroma Score",
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size
@@ -50,7 +50,7 @@ epic_caf <- plot_spatial(
   result = "epic_Cancer.associated.fibroblast",
   smooth = TRUE,
   density = FALSE,
-  title = "EPIC CAFs",
+  title = "CAFs",
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size
@@ -61,7 +61,7 @@ epic_b <- plot_spatial(
   result = "epic_B.cell",
   smooth = TRUE,
   density = FALSE,
-  title = "EPIC B cells",
+  title = "B cells",
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size
@@ -72,7 +72,7 @@ epic_endothelial <- plot_spatial(
   result = "epic_Endothelial.cell",
   smooth = TRUE,
   density = FALSE,
-  title = "EPIC Endothelial cell",
+  title = "Endothelial cell",
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size
@@ -84,7 +84,7 @@ quantiseq_cd8 <- plot_spatial(
   result = "quantiseq_T.cell.CD8.",
   smooth = TRUE,
   density = FALSE,
-  title = "quanTIseq CD8 T cells",
+  title = "CD8 T cells",
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
@@ -96,7 +96,7 @@ quantiseq_t <- plot_spatial(
   result = "aggT",
   smooth = TRUE,
   density = FALSE,
-  title = "quanTIseq T cells",
+  title = "T cells",
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
