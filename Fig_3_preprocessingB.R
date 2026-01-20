@@ -197,20 +197,6 @@ pclus3 <- plot_spatial(
   show_image = FALSE
 )
 
-plot_spatial(
-  clusterX,
-  result = "cluster",
-  palette = "inferno",
-  title = "Clustering EPIC",
-  density = FALSE,
-  title_size = title_size,
-  font_size = font_size,
-  legend_size = legend_size,
-  spot_size = 1.03,
-  image_id = NULL,
-  show_image = FALSE
-)
-
 mAbundantSTD <- plot_most_abundant(
   deconvEPIC,
   method = "epic",
