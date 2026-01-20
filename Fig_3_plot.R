@@ -5,6 +5,7 @@ plots_3a <- readRDS("./export/fig_3A_panels.rds")
 plots_3b <- readRDS("./export/fig_3B_panels.rds")
 
 plots <- c(plots_3a, plots_3b)
+plots <- plots[-c(5, 6, 7, 11)]
 
 add_enum <- function(p, label) {
   p + ggplot2::ggtitle(paste0(label, ") ", p$labels$title))
@@ -20,8 +21,7 @@ layout_matrix <- rbind(
   c(1, 2, 3, 4),
   c(5, 6, 7, 8),
   c(9, 10, 11, 12),
-  c(13, 14, 15, 16),
-  c(17, 17, 18, 18)
+  c(13, 13, 14, 14)
 )
 
 final_plot <- grid.arrange(
