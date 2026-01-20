@@ -18,7 +18,7 @@ truth <- plot_spatial(
     result = "groundTruth",
     density = FALSE,
     smooth = FALSE,
-    title = "Ground truth (human)",
+    title = "Ground truth",
     show_image = FALSE,
     palette = "Inferno",
     title_size = title_size,
@@ -32,7 +32,7 @@ l5 <- plot_spatial(
     result = "cell2location_L5.IT",
     density = FALSE,
     smooth = TRUE,
-    title = "L5.IT C2L",
+    title = "L5.IT",
     title_size = title_size,
     font_size = font_size,
     legend_size = legend_size
@@ -43,7 +43,7 @@ l6 <- plot_spatial(
     result = "cell2location_L2.3.IT",
     density = FALSE,
     smooth = TRUE,
-    title = "L2.3.IT C2L",
+    title = "L2.3.IT",
     title_size = title_size,
     font_size = font_size,
     legend_size = legend_size
@@ -54,7 +54,7 @@ oligo <- plot_spatial(
     result = "cell2location_Oligo",
     density = FALSE,
     smooth = TRUE,
-    title = "Oligodendrocytes C2L",
+    title = "Oligodendrocytes",
     title_size = title_size,
     font_size = font_size,
     legend_size = legend_size
@@ -98,7 +98,7 @@ kmeans_7 <- plot_spatial(
     result = "cluster_cell2location_nclusters_7",
     palette = "Accent",
     density = FALSE,
-    title = "k-means C2L 7",
+    title = "k-means 7",
     title_size = title_size,
     font_size = font_size,
     legend_size = legend_size,
@@ -112,7 +112,7 @@ mAbundant <- plot_most_abundant(
     min_abundance = 0.1,
     min_spot = 200,
     remove = "cell2location_Endo",
-    title = "Most Abundant C2L",
+    title = "Most Abundant",
     title_size = title_size,
     font_size = font_size,
     legend_size = legend_size
