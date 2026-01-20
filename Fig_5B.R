@@ -162,7 +162,7 @@ add_enum_list <- function(plots, labels) {
 }
 
 plots <- add_enum_list(
-    list(abs, lumb, caf, cut, lumbabs, cafabs),
+    list(abs, cut, lumb, lumbabs, caf, cafabs),
     LETTERS[1:6]
 )
 
