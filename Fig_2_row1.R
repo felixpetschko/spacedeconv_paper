@@ -72,13 +72,6 @@ add_enum_list <- function(plots, labels) {
 }
 
 plots <- add_enum_list(list(p1, p2, p3, p4), LETTERS[1:4])
-plots <- lapply(plots, function(p) {
-  p + theme(
-    plot.title.position = "panel",
-    plot.title = element_text(hjust = 0, margin = margin(b = 6)),
-    plot.margin = margin(t = 8, r = 0, b = 0, l = 0)
-  )
-})
 
 # Arrange the plots in a grid
 final_plot <- plot_grid(
@@ -90,7 +83,7 @@ final_plot <- plot_grid(
 
 # Save the UMAP as a high-resolution PNG
 ggplot2::ggsave(
-  filename = "./export/Fig_S1.png",
+  filename = "./export/Fig_2_row1.png",
   plot = final_plot,
   width = 20,
   height = 5,
