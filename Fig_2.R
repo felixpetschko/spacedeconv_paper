@@ -116,7 +116,7 @@ p8 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "RCTD LumB (smoothed)",
+  title = "LumB (smoothed)",
   nDigits = 2
 )
 
