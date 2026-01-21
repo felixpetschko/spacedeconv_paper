@@ -6,7 +6,7 @@ dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
 
-plots <- readRDS("./export/objects/fig_S3_panels.rds")
+plots <- readRDS("./export/objects/fig_S4_panels.rds")
 
 add_enum <- function(p, label) {
   p +
@@ -34,7 +34,7 @@ final <- plot_grid(
 )
 
 ggplot2::ggsave(
-  filename = "./export/figures/fig_S3.png",
+  filename = "./export/figures/fig_S4.png",
   plot = final,
   dpi = 600,
   width = 15,
