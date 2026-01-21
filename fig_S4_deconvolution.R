@@ -70,7 +70,7 @@ qBcells <- plot_spatial(
     density = FALSE,
     offset_rotation = TRUE,
     smooth = TRUE,
-    title = "quanTIseq B cells (sm.)",
+    title = "B cells (sm.)",
     title_size = title_size,
     font_size = font_size,
     legend_size = legend_size,
