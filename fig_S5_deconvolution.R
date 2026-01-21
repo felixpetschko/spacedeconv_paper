@@ -78,4 +78,4 @@ qBcells <- plot_spatial(
 )
 
 plots_5A <- list(patho, geneSet, qBcells)
-saveRDS(plots_5A, file = "./export/objects/fig_S4_panels.rds")
+saveRDS(plots_5A, file = "./export/objects/fig_S5_panels.rds")
