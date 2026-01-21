@@ -282,4 +282,4 @@ plots_3b <- list(
   mAbundantNoCancer
 )
 
-saveRDS(plots_3b, file = "./export/objects/fig_3B_panels.rds")
+saveRDS(plots_3b, file = "./export/objects/fig_S2B_panels.rds")

@@ -119,4 +119,4 @@ plots_3a <- list(
   quantiseq_cd8
 )
 
-saveRDS(plots_3a, file = "./export/objects/fig_3A_panels.rds")
+saveRDS(plots_3a, file = "./export/objects/fig_S2A_panels.rds")

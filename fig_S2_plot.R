@@ -6,8 +6,8 @@ dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
 
-plots_3a <- readRDS("./export/objects/fig_3A_panels.rds")
-plots_3b <- readRDS("./export/objects/fig_3B_panels.rds")
+plots_3a <- readRDS("./export/objects/fig_S2A_panels.rds")
+plots_3b <- readRDS("./export/objects/fig_S2B_panels.rds")
 
 plots <- c(plots_3a, plots_3b)
 plots <- plots[-c(5, 6, 7, 11)]
