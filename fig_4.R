@@ -4,7 +4,7 @@ library(purrr)
 library(pbapply)
 library(ggplot2)
 library(spacedeconv)
-library(gridExtra)
+library(cowplot)
 library(sf)
 figures_dir <- "./export/figures"
 objects_dir <- "./export/objects"
@@ -171,15 +171,11 @@ plots <- add_enum_list(
     LETTERS[1:6]
 )
 
-grid_layout <- rbind(
-    c(1, 2),
-    c(3, 4),
-    c(5, 6)
-)
-
-final <- grid.arrange(
-    grobs = plots,
-    layout_matrix = grid_layout
+final <- plot_grid(
+    plotlist = plots,
+    ncol = 2,
+    align = "hv",
+    axis = "tblr"
 )
 
 ggsave(
