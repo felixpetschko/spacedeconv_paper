@@ -1,5 +1,5 @@
 library(ggplot2)
-library(gridExtra)
+library(cowplot)
 figures_dir <- "./export/figures"
 objects_dir <- "./export/objects"
 dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
@@ -26,8 +26,7 @@ add_enum_list <- function(plots, labels) {
 
 plots <- add_enum_list(plots, LETTERS[1:length(plots)])
 
-grid_layout <- rbind(c(1, 2, 3))
-final <- grid.arrange(grobs = plots, layout_matrix = grid_layout)
+final <- plot_grid(plotlist = plots, ncol = 3, align = "hv", axis = "tblr")
 
 ggsave(
     filename = "./export/figures/fig_S4.png",
