@@ -329,7 +329,7 @@ grid_1 <- grid.arrange(
 )
 
 ggsave(
-  "./export/figures/fig_S6.png",
+  "./export/figures/fig_S2.png",
   plot = grid_1,
   dpi = 600,
   width = 20,
