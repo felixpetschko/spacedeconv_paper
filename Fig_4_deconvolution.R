@@ -1,3 +1,8 @@
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
+
 options(stringsAsFactors = FALSE)
 
 library(spacedeconv)
@@ -42,5 +47,5 @@ deconvC2L <- deconvolute(
     assay_sp = "counts"
 )
 
-saveRDS(deconvC2L, file = "./export/4A_C2L.rds")
-cat("Saved deconvolution result to ./export/4A_C2L.rds\n")
+saveRDS(deconvC2L, file = "./export/objects/4A_C2L.rds")
+cat("Saved deconvolution result to ./export/objects/4A_C2L.rds\n")

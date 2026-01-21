@@ -6,6 +6,11 @@ library(ggplot2)
 library(spacedeconv)
 library(gridExtra)
 library(sf)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
+
 
 a1 <- read.table("./data/V1_Section1_detections.txt", sep = "\t", header = TRUE)
 spe <- read10xVisium("./data/breastCancer/Section1/outs/")
@@ -178,7 +183,7 @@ final <- grid.arrange(
 )
 
 ggsave(
-    filename = "./export/fig_5B.png",
+    filename = "./export/figures/fig_5B.png",
     plot = final,
     dpi = 600,
     width = 10,

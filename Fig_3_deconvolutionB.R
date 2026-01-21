@@ -2,6 +2,11 @@ library(spacedeconv)
 library(SpatialExperiment)
 library(decoupleR)
 library(dplyr)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
+
 
 spe <- read10xVisium("./data/sudmeier/750/")
 
@@ -29,7 +34,7 @@ deconv <- spacedeconv::compute_activities(spe, ref)
 ref <- get_decoupleR_reference("collectri")
 deconv <- spacedeconv::compute_activities(deconv, ref)
 
-saveRDS(deconv, file = "./export/3BdecoupleR.rds")
+saveRDS(deconv, file = "./export/objects/3BdecoupleR.rds")
 
 speTCR <- read10xVisium("./data/sudmeier/750/", images = "hires")
 rownames(speTCR) <- rowData(speTCR)$symbol
@@ -51,7 +56,7 @@ if ("imgData" %in% slotNames(speTCR)) {
   imgData(speTCR) <- DataFrame()
 }
 
-saveRDS(speTCR, file = "./export/3Btcr.rds")
+saveRDS(speTCR, file = "./export/objects/3Btcr.rds")
 
 speTCR$UMIB <- colData(speTCR)$UMITCR >= 5
 
@@ -68,5 +73,5 @@ deconvQuanTIseq <- deconvolute(
   tumor = TRUE
 )
 
-saveRDS(deconvEPIC, file = "./export/3Bepic.rds")
-saveRDS(deconvQuanTIseq, file = "./export/3Bquantiseq.rds")
+saveRDS(deconvEPIC, file = "./export/objects/3Bepic.rds")
+saveRDS(deconvQuanTIseq, file = "./export/objects/3Bquantiseq.rds")

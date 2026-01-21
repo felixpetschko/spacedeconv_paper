@@ -3,9 +3,14 @@ library(SpatialExperiment)
 library(corrplot)
 library(RColorBrewer)
 library(ggplot2)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
-c2l <- readRDS("./export/4B_C2L.rds")
-rctd <- readRDS("./export/4B_RCTD.rds")
+
+c2l <- readRDS("./export/objects/4B_C2L.rds")
+rctd <- readRDS("./export/objects/4B_RCTD.rds")
 
 spot_to_remove <- c(
   "AATCGAGGTCTCAAGG-1", "ACCACACGGTTGATGG-1",
@@ -304,4 +309,4 @@ plots_S2 <- list(
     clus01,
     clus06
 )
-saveRDS(plots_S2, file = "./export/fig_S2_panels.rds")
+saveRDS(plots_S2, file = "./export/objects/fig_S2_panels.rds")

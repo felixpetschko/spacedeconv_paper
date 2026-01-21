@@ -1,8 +1,13 @@
 library(ggplot2)
 library(gridExtra)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
-plots_3a <- readRDS("./export/fig_3A_panels.rds")
-plots_3b <- readRDS("./export/fig_3B_panels.rds")
+
+plots_3a <- readRDS("./export/objects/fig_3A_panels.rds")
+plots_3b <- readRDS("./export/objects/fig_3B_panels.rds")
 
 plots <- c(plots_3a, plots_3b)
 plots <- plots[-c(5, 6, 7, 11)]
@@ -38,7 +43,7 @@ final_plot <- grid.arrange(
 )
 
 ggplot2::ggsave(
-  filename = "./export/fig_3.png",
+  filename = "./export/figures/fig_3.png",
   plot = final_plot,
   width = 20,
   height = 25,

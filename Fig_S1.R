@@ -4,6 +4,11 @@ library(gridExtra)
 library(ggplot2)
 library(grid)
 library(ggpubr)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
+
 
 allresults_minor_1142243F <- readRDS("./data/allresults_minor_1142243F.rds")
 allresults_minor_1160920F <- readRDS("./data/allresults_minor_1160920F.rds")
@@ -324,7 +329,7 @@ grid_1 <- grid.arrange(
 )
 
 ggsave(
-  "./export/fig_S1.png",
+  "./export/figures/fig_S1.png",
   plot = grid_1,
   dpi = 600,
   width = 20,

@@ -1,6 +1,11 @@
 library(spacedeconv)
 library(SpatialExperiment)
 library(ggplot2)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
+
 
 spe <- read10xVisium("./data/renal/frozen_b1/")
 
@@ -73,4 +78,4 @@ qBcells <- plot_spatial(
 )
 
 plots_5A <- list(patho, geneSet, qBcells)
-saveRDS(plots_5A, file = "./export/fig_5A_panels.rds")
+saveRDS(plots_5A, file = "./export/objects/fig_5A_panels.rds")

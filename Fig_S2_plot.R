@@ -1,7 +1,12 @@
 library(ggplot2)
 library(gridExtra)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
-plots <- readRDS("./export/fig_S2_panels.rds")
+
+plots <- readRDS("./export/objects/fig_S2_panels.rds")
 
 add_enum <- function(p, label) {
   p +
@@ -33,7 +38,7 @@ final <- grid.arrange(
 )
 
 ggsave(
-    filename = "./export/fig_S2.png",
+    filename = "./export/figures/fig_S2.png",
     plot = final,
     dpi = 600,
     width = 15,

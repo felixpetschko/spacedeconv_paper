@@ -3,6 +3,11 @@ library(SpatialExperiment)
 library(ggplot2)
 library(gridExtra)
 library(dplyr)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
+
 
 spe <- read10xVisium("./data/sudmeier/750/")
 
@@ -26,10 +31,10 @@ for (clonotype in unique(metadata$Clonoytpe_ids)) {
 }
 
 deconvEstimate <- deconvolute(spe, method = "estimate", assay_sp = "cpm")
-saveRDS(deconvEstimate, file = "./export/3AEstimate.rds")
+saveRDS(deconvEstimate, file = "./export/objects/3AEstimate.rds")
 
 deconvEPIC <- deconvolute(spe, method = "epic", assay_sp = "cpm", tumor = TRUE)
-saveRDS(deconvEPIC, file = "./export/3AEpic.rds")
+saveRDS(deconvEPIC, file = "./export/objects/3AEpic.rds")
 
 deconvQuanTiseq <- deconvolute(
   spe,
@@ -52,4 +57,4 @@ deconvQuanTiseq <- aggregate_results(
   name = "aggT"
 )
 
-saveRDS(deconvQuanTiseq, file = "./export/3AQuantiseq.rds")
+saveRDS(deconvQuanTiseq, file = "./export/objects/3AQuantiseq.rds")

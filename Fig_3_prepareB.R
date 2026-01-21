@@ -2,11 +2,16 @@ library(spacedeconv)
 library(SpatialExperiment)
 library(ggplot2)
 library(RColorBrewer)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
-decouple <- readRDS("./export/3BdecoupleR.rds")
-tcr <- readRDS("./export/3Btcr.rds")
-deconvEPIC <- readRDS("./export/3Bepic.rds")
-deconvQuanTIseq <- readRDS("./export/3Bquantiseq.rds")
+
+decouple <- readRDS("./export/objects/3BdecoupleR.rds")
+tcr <- readRDS("./export/objects/3Btcr.rds")
+deconvEPIC <- readRDS("./export/objects/3Bepic.rds")
+deconvQuanTIseq <- readRDS("./export/objects/3Bquantiseq.rds")
 
 title_size <- 22
 font_size <- 18
@@ -277,4 +282,4 @@ plots_3b <- list(
   mAbundantNoCancer
 )
 
-saveRDS(plots_3b, file = "./export/fig_3B_panels.rds")
+saveRDS(plots_3b, file = "./export/objects/fig_3B_panels.rds")

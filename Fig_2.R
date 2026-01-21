@@ -1,6 +1,11 @@
 library(spacedeconv)
 library(ggplot2)
 library(cowplot)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
+
 
 allresults_minor_andersson <- readRDS("./data/allresults_minor_andersson.rds")
 
@@ -92,7 +97,7 @@ final_plot <- plot_grid(
 
 # Save the UMAP as a high-resolution PNG
 ggplot2::ggsave(
-  filename = "./export/fig_2.png",
+  filename = "./export/figures/fig_2.png",
   plot = final_plot,
   width = 20,
   height = 5,

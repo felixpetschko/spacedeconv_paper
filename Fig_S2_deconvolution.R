@@ -1,5 +1,10 @@
 library(spacedeconv)
 library(SpatialExperiment)
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
+
 
 spe = read10xVisium("./data/cell2location/visium/48/")
 rownames(spe) <- rowData(spe)$symbol
@@ -33,7 +38,7 @@ deconv = deconvolute(
     values = "relative"
 )
 
-saveRDS(deconv, file = "./export/4B_C2L.rds")
+saveRDS(deconv, file = "./export/objects/4B_C2L.rds")
 
 deconv = deconvolute(
     spe,
@@ -43,4 +48,4 @@ deconv = deconvolute(
     n_cores = 8
 )
 
-saveRDS(deconv, file = "./export/4B_RCTD.rds")
+saveRDS(deconv, file = "./export/objects/4B_RCTD.rds")

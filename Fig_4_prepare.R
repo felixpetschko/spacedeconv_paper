@@ -1,3 +1,8 @@
+figures_dir <- "./export/figures"
+objects_dir <- "./export/objects"
+dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
+
 options(stringsAsFactors = FALSE)
 
 library(spacedeconv)
@@ -5,7 +10,7 @@ library(SpatialExperiment)
 library(ggplot2)
 library(decoupleR)
 
-deconv <- readRDS("./export/4A_C2L.rds")
+deconv <- readRDS("./export/objects/4A_C2L.rds")
 
 title_size <- 22
 font_size <- 18
@@ -137,4 +142,4 @@ res <- spacedeconv::cluster(
 )
 
 plots_4 <- list(truth, kmeans_7, mAbundant, oligo, l5, l6)
-saveRDS(plots_4, file = "./export/fig_4_panels.rds")
+saveRDS(plots_4, file = "./export/objects/fig_4_panels.rds")
