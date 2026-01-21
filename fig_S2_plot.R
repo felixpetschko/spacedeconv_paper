@@ -43,7 +43,7 @@ final_plot <- grid.arrange(
 )
 
 ggplot2::ggsave(
-  filename = "./export/figures/fig_3.png",
+  filename = "./export/figures/fig_S2.png",
   plot = final_plot,
   width = 20,
   height = 25,
