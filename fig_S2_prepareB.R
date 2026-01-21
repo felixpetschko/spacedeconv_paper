@@ -8,10 +8,10 @@ dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
 
-decouple <- readRDS("./export/objects/3BdecoupleR.rds")
-tcr <- readRDS("./export/objects/3Btcr.rds")
-deconvEPIC <- readRDS("./export/objects/3Bepic.rds")
-deconvQuanTIseq <- readRDS("./export/objects/3Bquantiseq.rds")
+decouple <- readRDS("./export/objects/fig_S2_decoupler.rds")
+tcr <- readRDS("./export/objects/fig_S2_tcr.rds")
+deconvEPIC <- readRDS("./export/objects/fig_S2_epic.rds")
+deconvQuanTIseq <- readRDS("./export/objects/fig_S2_quantiseq.rds")
 
 title_size <- 22
 font_size <- 18

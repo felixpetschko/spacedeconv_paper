@@ -47,5 +47,5 @@ deconvC2L <- deconvolute(
     assay_sp = "counts"
 )
 
-saveRDS(deconvC2L, file = "./export/objects/4A_C2L.rds")
-cat("Saved deconvolution result to ./export/objects/4A_C2L.rds\n")
+saveRDS(deconvC2L, file = "./export/objects/fig_S3_c2l.rds")
+cat("Saved deconvolution result to ./export/objects/fig_S3_c2l.rds\n")

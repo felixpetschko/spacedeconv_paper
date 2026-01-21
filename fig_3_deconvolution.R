@@ -38,7 +38,7 @@ deconv = deconvolute(
     values = "relative"
 )
 
-saveRDS(deconv, file = "./export/objects/4B_C2L.rds")
+saveRDS(deconv, file = "./export/objects/fig_3_c2l.rds")
 
 deconv = deconvolute(
     spe,
@@ -48,4 +48,4 @@ deconv = deconvolute(
     n_cores = 8
 )
 
-saveRDS(deconv, file = "./export/objects/4B_RCTD.rds")
+saveRDS(deconv, file = "./export/objects/fig_3_rctd.rds")

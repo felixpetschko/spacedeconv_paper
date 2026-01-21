@@ -9,8 +9,8 @@ dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
 
-c2l <- readRDS("./export/objects/4B_C2L.rds")
-rctd <- readRDS("./export/objects/4B_RCTD.rds")
+c2l <- readRDS("./export/objects/fig_3_c2l.rds")
+rctd <- readRDS("./export/objects/fig_3_rctd.rds")
 
 spot_to_remove <- c(
   "AATCGAGGTCTCAAGG-1", "ACCACACGGTTGATGG-1",
@@ -309,4 +309,4 @@ plots_S2 <- list(
     clus01,
     clus06
 )
-saveRDS(plots_S2, file = "./export/objects/fig_S2_panels.rds")
+saveRDS(plots_S2, file = "./export/objects/fig_3_panels.rds")

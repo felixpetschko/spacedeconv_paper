@@ -6,7 +6,7 @@ dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
 
-plots <- readRDS("./export/objects/fig_5A_panels.rds")
+plots <- readRDS("./export/objects/fig_S4_panels.rds")
 
 add_enum <- function(p, label) {
     p +
@@ -30,7 +30,7 @@ grid_layout <- rbind(c(1, 2, 3))
 final <- grid.arrange(grobs = plots, layout_matrix = grid_layout)
 
 ggsave(
-    filename = "./export/figures/fig_5A.png",
+    filename = "./export/figures/fig_S4.png",
     plot = final,
     dpi = 600,
     width = 15,

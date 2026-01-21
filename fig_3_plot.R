@@ -1,12 +1,12 @@
 library(ggplot2)
-library(cowplot)
+library(gridExtra)
 figures_dir <- "./export/figures"
 objects_dir <- "./export/objects"
 dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
 
-plots <- readRDS("./export/objects/fig_4_panels.rds")
+plots <- readRDS("./export/objects/fig_3_panels.rds")
 
 add_enum <- function(p, label) {
   p +
@@ -26,19 +26,23 @@ add_enum_list <- function(plots) {
 
 plots <- add_enum_list(plots)
 
-final <- plot_grid(
-  plotlist = plots,
-  ncol = 3,
-  align = "hv",
-  axis = "tblr"
+grid_layout <- rbind(
+    c(1, 1, 1, 2, 2, 2),
+    c(3, 3, 4, 4, 5, 5),
+    c(6, 6, 7, 7, 8, 8)
 )
 
-ggplot2::ggsave(
-  filename = "./export/figures/fig_4.png",
-  plot = final,
-  dpi = 600,
-  width = 15,
-  height = 10,
-  units = "in",
-  bg = "white"
+final <- grid.arrange(
+    grobs = plots,
+    layout_matrix = grid_layout
+)
+
+ggsave(
+    filename = "./export/figures/fig_3.png",
+    plot = final,
+    dpi = 600,
+    width = 15,
+    height = 15,
+    units = "in",
+    bg = "white"
 )
