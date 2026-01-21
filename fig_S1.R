@@ -64,19 +64,27 @@ p4 <- spacedeconv::plot_spatial(
   title_size = title_size,
   font_size = font_size,
   legend_size = legend_size,
-  title = "Naïve B cells (smoothed)",
+  title = "Naïve B cells (sm.)",
   nDigits = 2
 )
 
 add_enum <- function(p, label) {
-  p + ggplot2::ggtitle(paste0(label, ") ", p$labels$title))
+  p +
+    labs(tag = paste0(label)) +
+    theme(
+      plot.title = element_text(hjust = 0.5, vjust = 1),
+      plot.title.position = "plot",
+      plot.tag = element_text(hjust = 0, vjust = 1, face = "bold", size = 24),
+      plot.tag.position = c(0, 1),
+      plot.margin = margin(6, 6, 6, 6)
+    )
 }
 
-add_enum_list <- function(plots, labels) {
-  Map(add_enum, plots, labels)
+add_enum_list <- function(plots) {
+  Map(function(p, i) add_enum(p, LETTERS[i]), plots, seq_along(plots))
 }
 
-plots <- add_enum_list(list(p1, p2, p3, p4), LETTERS[1:4])
+plots <- add_enum_list(list(p1, p2, p3, p4))
 
 # Arrange the plots in a grid
 final_plot <- plot_grid(
