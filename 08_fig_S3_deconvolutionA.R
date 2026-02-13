@@ -31,10 +31,10 @@ for (clonotype in unique(metadata$Clonoytpe_ids)) {
 }
 
 deconvEstimate <- deconvolute(spe, method = "estimate", assay_sp = "cpm")
-saveRDS(deconvEstimate, file = "./export/objects/fig_S3_estimate.rds")
+saveRDS(deconvEstimate, file = "./export/objects/fig_S3A_estimate.rds")
 
 deconvEPIC <- deconvolute(spe, method = "epic", assay_sp = "cpm", tumor = TRUE)
-saveRDS(deconvEPIC, file = "./export/objects/fig_S3_epic.rds")
+saveRDS(deconvEPIC, file = "./export/objects/fig_S3A_epic.rds")
 
 deconvQuanTiseq <- deconvolute(
   spe,
@@ -57,4 +57,4 @@ deconvQuanTiseq <- aggregate_results(
   name = "aggT"
 )
 
-saveRDS(deconvQuanTiseq, file = "./export/objects/fig_S3_quantiseq.rds")
+saveRDS(deconvQuanTiseq, file = "./export/objects/fig_S3A_quantiseq.rds")

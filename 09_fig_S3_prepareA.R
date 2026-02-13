@@ -7,9 +7,9 @@ dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(objects_dir, showWarnings = FALSE, recursive = TRUE)
 
 
-deconvEstimate <- readRDS("./export/objects/fig_S3_estimate.rds")
-deconvEPIC <- readRDS("./export/objects/fig_S3_epic.rds")
-deconvQuanTiseq <- readRDS("./export/objects/fig_S3_quantiseq.rds")
+deconvEstimate <- readRDS("./export/objects/fig_S3A_estimate.rds")
+deconvEPIC <- readRDS("./export/objects/fig_S3A_epic.rds")
+deconvQuanTiseq <- readRDS("./export/objects/fig_S3A_quantiseq.rds")
 
 title_size <- 22
 font_size <- 18
