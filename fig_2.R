@@ -90,7 +90,7 @@ plots <- add_enum_list(list(p5, p6, p7, p8), LETTERS[1:4])
 # Arrange the plots in a grid
 final_plot <- plot_grid(
   plotlist = plots,
-  ncol = 4,
+  ncol = 2,
   align = "hv",
   axis = "tblr"
 )
@@ -99,8 +99,8 @@ final_plot <- plot_grid(
 ggplot2::ggsave(
   filename = "./export/figures/fig_2.png",
   plot = final_plot,
-  width = 20,
-  height = 5,
+  width = 10,
+  height = 10,
   units = "in",
   dpi = 600,
   bg = "white"
