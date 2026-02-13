@@ -291,7 +291,7 @@ truth <- plot_spatial(
     result = "brain_region",
     density = FALSE,
     palette = "Accent",
-    title = "Ground Truth (mouse)",
+    title = "Ground Truth",
     title_size = title_size,
     font_size = font_size,
     legend_size = legend_size,
